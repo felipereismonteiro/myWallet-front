@@ -7,13 +7,11 @@ export default function SignIn() {
     <Container>
       <Logo />
       <Form>
-        <Input type="text" placeholder="Nome"></Input>
         <Input type="text" placeholder="E-mail"></Input>
         <Input type="text" placeholder="Senha"></Input>
-        <Input type="text" placeholder="Confirme Senha"></Input>
-        <InputSubmit type="submit" value="Cadastrar"></InputSubmit>
-        <Link to="/" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
-          Já tem uma conta? Entre agora!
+        <InputSubmit type="submit" value="Entrar"></InputSubmit>
+        <Link to="/sign-up" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
+        Primeira vez? Cadastre-se!
         </Link>
       </Form>
     </Container>
@@ -24,7 +22,7 @@ const Container = styled.div`
   height: 2000px;
   background-color: purple;
   box-sizing: border-box;
-  padding-top: 50px;
+  padding-top: 150px;
 `;
 
 const Form = styled.form`
@@ -65,5 +63,6 @@ const InputSubmit = styled.input`
 
   color: #ffffff;
   border: none;
+
   margin-bottom: 20px;
 `;
