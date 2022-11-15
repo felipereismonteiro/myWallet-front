@@ -12,8 +12,8 @@ export default function SignIn() {
         <Input type="text" placeholder="Senha"></Input>
         <Input type="text" placeholder="Confirme Senha"></Input>
         <InputSubmit type="submit" value="Cadastrar"></InputSubmit>
-        <Link to="/sign-up" style={{textDecoration: "none"}}>
-          <A href="#">Já tem uma conta? Entre agora!</A>
+        <Link to="/" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
+          Já tem uma conta? Entre agora!
         </Link>
       </Form>
     </Container>
@@ -66,11 +66,4 @@ const InputSubmit = styled.input`
   color: #ffffff;
   border: none;
   margin-bottom: 20px;
-`;
-
-const A = styled.a`
-  color: #ffffff;
-  font-family: "Raleway";
-  text-decoration: none;
-  font-weight: bold;
 `;

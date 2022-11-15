@@ -9,7 +9,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

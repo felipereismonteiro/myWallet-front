@@ -10,8 +10,8 @@ export default function SignUp() {
         <Input type="text" placeholder="E-mail"></Input>
         <Input type="text" placeholder="Senha"></Input>
         <InputSubmit type="submit" value="Entrar"></InputSubmit>
-        <Link to="/sign-in" style={{ textDecoration: "none" }}>
-          <A href="#">Primeira vez? Cadastre-se!</A>
+        <Link to="/sign-in" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
+        Primeira vez? Cadastre-se!
         </Link>
       </Form>
     </Container>
@@ -65,12 +65,4 @@ const InputSubmit = styled.input`
   border: none;
 
   margin-bottom: 20px;
-`;
-
-const A = styled.a`
-  color: #ffffff;
-  font-family: "Raleway";
-  margin: 15px auto;
-  text-decoration: none;
-  font-weight: bold;
 `;
