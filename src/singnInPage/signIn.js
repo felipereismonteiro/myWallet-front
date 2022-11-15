@@ -1,14 +1,28 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../mainComponents/logo";
 
 export default function SignIn() {
+  async function submited(form) {
+    form.preventDefault()
+    const email = form.target.email.value;
+    const password = form.target.password.value;
+
+    try {
+      const promisse = await axios.post("http://localhost:5000/sign-in", {email, password});
+      console.log(promisse.data, promisse.status);
+    } catch(err) {
+      console.log(err.response.data);
+    }   
+  }
+
   return (
     <Container>
       <Logo />
-      <Form>
-        <Input type="text" placeholder="E-mail"></Input>
-        <Input type="text" placeholder="Senha"></Input>
+      <Form onSubmit={submited}>
+        <Input name="email" type="email" placeholder="E-mail"></Input>
+        <Input name="password" type="password" placeholder="Senha"></Input>
         <InputSubmit type="submit" value="Entrar"></InputSubmit>
         <Link to="/sign-up" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
         Primeira vez? Cadastre-se!

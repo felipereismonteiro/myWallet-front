@@ -7,10 +7,10 @@ export default function SignUp() {
     <Container>
       <Logo />
       <Form>
-        <Input Input type="text" placeholder="Nome"></Input>
-        <Input type="text" placeholder="E-mail"></Input>
-        <Input type="text" placeholder="Senha"></Input>
-        <Input type="text" placeholder="Confirme Senha"></Input>
+        <Input name="name" type="name" placeholder="Nome"></Input>
+        <Input name="email" type="email" placeholder="E-mail"></Input>
+        <Input name="password" type="password" placeholder="Senha"></Input>
+        <Input name="confirmPassword" type="password" placeholder="Confirme Senha"></Input>
         <InputSubmit type="submit" value="Cadastrar"></InputSubmit>
         <Link to="/" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
           Já tem uma conta? Entre agora!
