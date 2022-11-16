@@ -1,9 +1,13 @@
+import { dblClick } from "@testing-library/user-event/dist/click";
 import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../mainComponents/logo";
 
 export default function SignIn() {
+  const [token, setToken] = useState();
+
   async function submited(form) {
     form.preventDefault()
     const email = form.target.email.value;
@@ -11,11 +15,27 @@ export default function SignIn() {
 
     try {
       const promisse = await axios.post("http://localhost:5000/sign-in", {email, password});
-      console.log(promisse.data, promisse.status);
+      setToken(promisse.data);
+
+      setInterval(async () => {
+        try {
+          if(token === undefined) {
+            return false;
+          } 
+          await axios.put("http://localhost:5000/update",{lastStatus: Date.now()}, {headers: {
+            "Authorization": `Bearer ${promisse.data}`
+          }})
+        }catch(err) {
+          console.log(err);
+        }
+        
+      }, 10000);
     } catch(err) {
-      console.log(err.response.data);
+      alert(err.response.data);
     }   
   }
+
+  
 
   return (
     <Container>
