@@ -1,12 +1,37 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../mainComponents/logo";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
+  async function signUp(f) {
+    f.preventDefault();
+
+    if(f.target.confirmPassword.value !== f.target.password.value ) {
+      return alert("Passwords doesn`t match!!!")
+    }
+
+    const form = {
+      name: f.target.name.value,
+      email: f.target.email.value,
+      password: f.target.password.value
+    }
+    
+    try {
+      await axios.post("http://localhost:5000/sign-up", form);
+      alert("User created!!!");
+      navigate("/");
+    } catch(err) {
+      alert(err.response.data);
+    }
+  }
+
   return (
     <Container>
       <Logo />
-      <Form>
+      <Form onSubmit={signUp}>
         <Input name="name" type="name" placeholder="Nome"></Input>
         <Input name="email" type="email" placeholder="E-mail"></Input>
         <Input name="password" type="password" placeholder="Senha"></Input>
