@@ -1,12 +1,13 @@
-import { dblClick } from "@testing-library/user-event/dist/click";
 import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Contexto } from "../Context/Context";
 import Logo from "../mainComponents/logo";
 
 export default function SignIn() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useContext(Contexto);
+  const navigate = useNavigate();
 
   async function submited(form) {
     form.preventDefault()
@@ -16,26 +17,26 @@ export default function SignIn() {
     try {
       const promisse = await axios.post("http://localhost:5000/sign-in", {email, password});
       setToken(promisse.data);
-
-      setInterval(async () => {
-        try {
-          if(token === undefined) {
-            return false;
-          } 
-          await axios.put("http://localhost:5000/update",{lastStatus: Date.now()}, {headers: {
-            "Authorization": `Bearer ${promisse.data}`
-          }})
-        }catch(err) {
-          console.log(err);
-        }
-        
-      }, 10000);
+      navigate("/myWallet");
     } catch(err) {
       alert(err.response.data);
     }   
   }
 
-  
+  setInterval(async () => {
+    try {
+      if(token === undefined) {
+        return false;
+      } 
+      await axios.put("http://localhost:5000/update",{lastStatus: Date.now()}, {headers: {
+        "Authorization": `Bearer ${token}`
+      }})
+      console.log("updated!!!");
+    }catch(err) {
+      console.log(err);
+    }
+    
+  }, 5000);
 
   return (
     <Container>
