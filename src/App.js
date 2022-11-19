@@ -30,7 +30,6 @@ function App() {
             },
           }
         );
-        console.log("updated!!!");
       } catch (err) {
         console.log(err);
       }
