@@ -26,26 +26,6 @@ export default function SignIn() {
     }
   }
 
-  setInterval(async () => {
-    try {
-      if (token === undefined) {
-        return false;
-      }
-      await axios.put(
-        "http://localhost:5000/update",
-        { lastStatus: Date.now() },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("updated!!!");
-    } catch (err) {
-      console.log(err);
-    }
-  }, 5000);
-
   return (
     <Container>
       <Logo />

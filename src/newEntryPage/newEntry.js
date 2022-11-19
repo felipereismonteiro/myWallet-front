@@ -4,10 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Contexto } from "../Context/Context";
 
-export default function SignUp() {
+export default function NewEntry() {
   const [token, setToken, data, setData] = useContext(Contexto);
-  console.log()
-  console.log(token)
 
   const navigate = useNavigate();
 
@@ -27,7 +25,7 @@ export default function SignUp() {
     }
 
     try {
-      await axios.post("http://localhost:5000/entry", newEntry, config);
+      await axios.post("http://localhost:5000/exit", newEntry, config);
       navigate("/myWallet");
     } catch (err) {
       alert(err.response.data);

@@ -7,27 +7,30 @@ import Buttons from "./buttons";
 import Entradas from "./dados";
 
 export default function Wallet() {
-  const [token, setToken, data, setData] = useContext(Contexto);
+  const [token, setToken, dataEntry, setDataEntry, dataExit, setDataExit] =
+    useContext(Contexto);
 
-  if(token !== undefined ){
-    getEntry()
+  if (token !== undefined) {
+    getEntry();
   }
 
   async function getEntry() {
     try {
       const config = {
         headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      }
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-      if(token === undefined) {
+      if (token === undefined) {
         return false;
       }
-  
-      const promisse = await axios.get("http://localhost:5000/entry", config)
-      setData(promisse.data);
-    } catch(err) {
+
+      const entries = await axios.get("http://localhost:5000/entry", config);
+      const exit = await axios.get("http://localhost:5000/exit", config);
+      setDataEntry(entries.data);
+      setDataExit(exit.data);
+    } catch (err) {
       console.log(err.response.data);
     }
   }
@@ -36,12 +39,22 @@ export default function Wallet() {
     <>
       <Header />
       <Dados>
-        {data.map(d => <Entradas
-          Date={d.date.slice(0,5)}
-          Texto={d.description}
-          type={d.typeof}
-          value={d.value}
-        />)}
+        {dataExit.map((d) => (
+          <Entradas
+            Date={d.date.slice(0, 5)}
+            Texto={d.description}
+            type={d.typeof}
+            value={d.value}
+          />
+        ))}
+        {dataEntry.map((d) => (
+          <Entradas
+            Date={d.date.slice(0, 5)}
+            Texto={d.description}
+            type={d.typeof}
+            value={d.value}
+          />
+        ))}
       </Dados>
       <Container>
         <Buttons />
@@ -58,7 +71,7 @@ const Container = styled.div`
 `;
 
 const Dados = styled.div`
-overflow-y: scroll;
+  overflow-y: scroll;
   width: 90%;
   height: 446px;
   background-color: #ffffff;
