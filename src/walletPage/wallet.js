@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Contexto } from "../Context/Context";
 import Header from "../mainComponents/header";
@@ -16,23 +16,26 @@ export default function Wallet() {
 
   async function getEntry() {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       if (token === undefined) {
         return false;
       }
-
-      const entries = await axios.get("http://localhost:5000/entry", config);
-      const exit = await axios.get("http://localhost:5000/exit", config);
-      setDataEntry(entries.data);
-      setDataExit(exit.data);
+      get();
     } catch (err) {
       console.log(err.response.data);
     }
+  }
+
+  async function get() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const entries = await axios.get("http://localhost:5000/entry", config);
+    const exit = await axios.get("http://localhost:5000/exit", config);
+    setDataEntry(entries.data);
+    setDataExit(exit.data);
   }
 
   return (
@@ -41,6 +44,7 @@ export default function Wallet() {
       <Dados>
         {dataExit.map((d) => (
           <Entradas
+            key={d._id}
             Date={d.date.slice(0, 5)}
             Texto={d.description}
             type={d.typeof}
@@ -49,6 +53,7 @@ export default function Wallet() {
         ))}
         {dataEntry.map((d) => (
           <Entradas
+            key={d.id}
             Date={d.date.slice(0, 5)}
             Texto={d.description}
             type={d.typeof}

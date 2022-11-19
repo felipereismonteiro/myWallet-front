@@ -9,7 +9,6 @@ import SignUp from "./signUpPage/signUpPage";
 import SignIn from "./singnInPage/signIn";
 import Wallet from "./walletPage/wallet";
 
-
 function App() {
   const [token, setToken] = useState();
   const [dataEntry, setDataEntry] = useState([]);
