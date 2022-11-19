@@ -7,8 +7,7 @@ import Buttons from "./buttons";
 import Entradas from "./dados";
 
 export default function Wallet() {
-  const [token, setToken] = useContext(Contexto);
-  const [data, setData] = useState([])
+  const [token, setToken, data, setData] = useContext(Contexto);
 
   if(token !== undefined ){
     getEntry()
@@ -38,7 +37,7 @@ export default function Wallet() {
       <Header />
       <Dados>
         {data.map(d => <Entradas
-          Date={d.date}
+          Date={d.date.slice(0,5)}
           Texto={d.description}
           type={d.typeof}
           value={d.value}

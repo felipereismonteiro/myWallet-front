@@ -1,14 +1,16 @@
 import { IoIosAddCircleOutline, IoMdRemoveCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Buttons() {
+  const navigate = useNavigate();
   return (
     <>
-      <Botoes>
+      <Botoes onClick={() => navigate("/newEntry")}>
         <IoIosAddCircleOutline style={{ fontSize: "30px" }} />
         <Texto>Nova entrada</Texto>
       </Botoes>
-      <Botoes>
+      <Botoes onClick={() => navigate("/newExit")}>
         <IoMdRemoveCircleOutline style={{ fontSize: "30px" }} />
         <p>
           Nova <br /> saida

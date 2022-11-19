@@ -10,32 +10,40 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   async function submited(form) {
-    form.preventDefault()
+    form.preventDefault();
     const email = form.target.email.value;
     const password = form.target.password.value;
 
     try {
-      const promisse = await axios.post("http://localhost:5000/sign-in", {email, password});
+      const promisse = await axios.post("http://localhost:5000/sign-in", {
+        email,
+        password,
+      });
       setToken(promisse.data);
       navigate("/myWallet");
-    } catch(err) {
+    } catch (err) {
       alert(err.response.data);
-    }   
+    }
   }
 
   setInterval(async () => {
     try {
-      if(token === undefined) {
+      if (token === undefined) {
         return false;
-      } 
-      await axios.put("http://localhost:5000/update",{lastStatus: Date.now()}, {headers: {
-        "Authorization": `Bearer ${token}`
-      }})
+      }
+      await axios.put(
+        "http://localhost:5000/update",
+        { lastStatus: Date.now() },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("updated!!!");
-    }catch(err) {
+    } catch (err) {
       console.log(err);
     }
-    
   }, 5000);
 
   return (
@@ -45,8 +53,16 @@ export default function SignIn() {
         <Input name="email" type="email" placeholder="E-mail"></Input>
         <Input name="password" type="password" placeholder="Senha"></Input>
         <InputSubmit type="submit" value="Entrar"></InputSubmit>
-        <Link to="/sign-up" style={{textDecoration: "none", color: "#ffffff", fontFamily: "Raleway", fontWeight: "bold"}}>
-        Primeira vez? Cadastre-se!
+        <Link
+          to="/sign-up"
+          style={{
+            textDecoration: "none",
+            color: "#ffffff",
+            fontFamily: "Raleway",
+            fontWeight: "bold",
+          }}
+        >
+          Primeira vez? Cadastre-se!
         </Link>
       </Form>
     </Container>

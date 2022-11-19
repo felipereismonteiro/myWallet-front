@@ -20,9 +20,10 @@ const Desc = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 10px;
-  width: 45%;
   && p:first-child {
     color: #c6c6c6;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   && p {
     font-family: "Raleway";
@@ -34,6 +35,6 @@ const Desc = styled.div`
 `;
 
 const Valor = styled.p`
-  margin: 10px;
+  margin: 10px 20px;
   color: ${props => props.color === "Entry" ? "#03AC00" : "#C70000"}
 `;
