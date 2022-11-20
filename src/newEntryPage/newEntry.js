@@ -25,7 +25,7 @@ export default function NewEntry() {
     }
 
     try {
-      await axios.post("http://localhost:5000/exit", newEntry, config);
+      await axios.post("http://localhost:5000/Entry", newEntry, config);
       navigate("/myWallet");
     } catch (err) {
       alert(err.response.data);

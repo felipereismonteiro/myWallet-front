@@ -7,6 +7,7 @@ import { Contexto } from "../Context/Context";
 export default function NewExit() {
   const [token, setToken, data, setData] = useContext(Contexto);
   const navigate = useNavigate();
+  console.log(data);
 
   async function newEntry(f) {
     f.preventDefault();
@@ -17,14 +18,14 @@ export default function NewExit() {
       }
     }
 
-    const newEntry = {
+    const newExit = {
       name: data[0][0],
       value: f.target.valor.value,
       description: f.target.desc.value,
     }
 
     try {
-      await axios.post("http://localhost:5000/exit", newEntry, config);
+      await axios.post("http://localhost:5000/exit", newExit, config);
       navigate("/myWallet");
     } catch (err) {
       alert(err.response.data);

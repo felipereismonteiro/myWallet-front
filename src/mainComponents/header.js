@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { IoIosLogOut } from "react-icons/io";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Contexto } from "../Context/Context";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function Header() {
+export default function Header({name}) {
   // eslint-disable-next-line no-unused-vars
-  const [token, setToken] = useContext(Contexto)
+  const [token, setToken, dataEntry, setDataEntry, dataExit, setDataExit, user] = useContext(Contexto);
+  const [userName, setUserName] = useState("");
   const navigate = useNavigate();
   
   function logOut() {
@@ -16,7 +18,7 @@ export default function Header() {
 
   return (
     <Container>
-      <BemVindo>Olá, Fulano</BemVindo>
+      <BemVindo>Olá, {user}</BemVindo>
       <IoIosLogOut onClick={logOut}
         style={{ fontSize: "30px", color: "#FFFFFF", margin: "30px" }}
       />

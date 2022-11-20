@@ -6,7 +6,7 @@ import { Contexto } from "../Context/Context";
 import Logo from "../mainComponents/logo";
 
 export default function SignIn() {
-  const [token, setToken] = useContext(Contexto);
+  const [token, setToken, dataEntry, setDataEntry, dataExit, setDataExit, user, setUser] = useContext(Contexto);
   const navigate = useNavigate();
 
   async function submited(form) {
@@ -19,7 +19,8 @@ export default function SignIn() {
         email,
         password,
       });
-      setToken(promisse.data);
+      setUser(promisse.data.name);
+      setToken(promisse.data.token);
       navigate("/myWallet");
     } catch (err) {
       alert(err.response.data);

@@ -13,6 +13,7 @@ function App() {
   const [token, setToken] = useState();
   const [dataEntry, setDataEntry] = useState([]);
   const [dataExit, setDataExit] = useState([]);
+  const [user, setUser] = useState();
 
   useEffect(() =>{
     setInterval(async () => {
@@ -36,13 +37,13 @@ function App() {
   },[token])
 
   return (
-    <Contexto.Provider value={[token, setToken, dataEntry, setDataEntry, dataExit, setDataExit]}>
+    <Contexto.Provider value={[token, setToken, dataEntry, setDataEntry, dataExit, setDataExit, user, setUser]}>
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/myWallet" element={<Wallet/>}/>
+        <Route path="/myWallet" element={<Wallet />}/>
         <Route path="/newEntry" element={<NewEntry />}/>
         <Route path="/newExit" element={<NewExit />}/>
       </Routes>
