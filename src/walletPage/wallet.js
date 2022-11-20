@@ -10,20 +10,11 @@ export default function Wallet() {
   const [token, setToken, dataEntry, setDataEntry, dataExit, setDataExit] =
     useContext(Contexto);
 
-  if (token !== undefined) {
-    getEntry();
-  }
-
-  async function getEntry() {
-    try {
-      if (token === undefined) {
-        return false;
-      }
+  useEffect(() => {
+    if (token !== undefined) {
       get();
-    } catch (err) {
-      console.log(err.response.data);
     }
-  }
+  },[])
 
   async function get() {
     const config = {
