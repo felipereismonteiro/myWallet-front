@@ -31,7 +31,7 @@ const Botoes = styled.button`
   color: white;
   margin: 20px;
   border: none;
-  width: 100%;
+  width: 320px;
   height: 114px;
   background: #a328d6;
   border-radius: 5px;
