@@ -23,8 +23,8 @@ export default function Wallet() {
       },
     };
 
-    const entries = await axios.get("http://localhost:5000/entry", config);
-    const exit = await axios.get("http://localhost:5000/exit", config);
+    const entries = await axios.get("https://mywallet-api-qtlk.onrender.com/entry", config);
+    const exit = await axios.get("https://mywallet-api-qtlk.onrender.com/exit", config);
     setDataEntry(entries.data);
     setDataExit(exit.data);
   }

@@ -20,7 +20,7 @@ export default function SignUp() {
     }
     
     try {
-      await axios.post("http://localhost:5000/sign-up", form);
+      await axios.post("https://mywallet-api-qtlk.onrender.com/sign-up", form);
       alert("User created!!!");
       navigate("/");
     } catch(err) {

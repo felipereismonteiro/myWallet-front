@@ -25,7 +25,7 @@ export default function NewExit() {
     }
 
     try {
-      await axios.post("http://localhost:5000/exit", newExit, config);
+      await axios.post("https://mywallet-api-qtlk.onrender.com/exit", newExit, config);
       navigate("/myWallet");
     } catch (err) {
       alert(err.response.data);

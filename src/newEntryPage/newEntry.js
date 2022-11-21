@@ -25,7 +25,7 @@ export default function NewEntry() {
     }
 
     try {
-      await axios.post("http://localhost:5000/Entry", newEntry, config);
+      await axios.post("https://mywallet-api-qtlk.onrender.com/Entry", newEntry, config);
       navigate("/myWallet");
     } catch (err) {
       alert(err.response.data);
