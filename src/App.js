@@ -22,7 +22,7 @@ function App() {
           return false;
         }
         await axios.put(
-          "http://localhost:5000/update",
+          "https://mywallet-api-qtlk.onrender.com/update",
           { lastStatus: Date.now() },
           {
             headers: {

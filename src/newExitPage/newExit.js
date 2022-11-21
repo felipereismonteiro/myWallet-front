@@ -7,7 +7,6 @@ import { Contexto } from "../Context/Context";
 export default function NewExit() {
   const [token, setToken, data, setData] = useContext(Contexto);
   const navigate = useNavigate();
-  console.log(data);
 
   async function newEntry(f) {
     f.preventDefault();
